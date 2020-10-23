@@ -1,0 +1,50 @@
+@import '../../index';
+.change-form {
+	// margin: 0 auto;
+	// padding: 5rem 10rem;
+	// width: 70%;
+	// background-color: white;
+	// position: relative;
+	border-bottom: 1px solid black;
+	padding: 5rem 8rem;
+
+	&__button-container {
+		position: relative;
+	}
+
+	&__button {
+		position: absolute;
+		left: 80%;
+		padding: 1rem 2rem;
+		background-color: greenyellow;
+		border: none;
+		color: white;
+		cursor: pointer;
+		outline: none;
+	}
+
+	&__form-group {
+		margin-top: 5rem;
+		display: flex;
+		align-items: center;
+		margin-bottom: 5rem;
+
+		img {
+			border-radius: 100rem;
+			height: 7rem;
+			margin-right: 2rem;
+		}
+
+		label {
+			color: $dark-blue;
+			font-size: 2rem;
+			border-bottom: 1px solid;
+			transition: all 0.2s linear;
+
+			&:hover {
+				background-color: green;
+				color: white;
+			}
+		}
+	}
+}

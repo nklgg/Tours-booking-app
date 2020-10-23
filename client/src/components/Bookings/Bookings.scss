@@ -1,0 +1,151 @@
+// .card-container {
+//   display: flex;
+//   justify-content: space-evenly;
+//   flex-wrap: wrap;
+//   margin-top: 10rem;
+//   padding: 0 40rem;
+// }
+
+// .card {
+//   height: 55rem;
+//   width: 30rem;
+//   overflow: hidden;
+//   border-radius: 1rem;
+//   position: relative;
+
+//   margin: 0 1rem 5rem 1rem;
+
+//   &:hover &__title::after {
+//     width: 7rem;
+//   }
+
+//   &:hover &__footer-invisible {
+//     transform: translateY(0);
+//   }
+
+//   &:hover &__img-container {
+//     img {
+//       opacity: 0.5;
+//     }
+//   }
+
+//   &:hover &__reserve-button {
+//     transform: translate(-50%, 0);
+//   }
+
+//   &__img-container {
+//     height: 70%;
+//     background-color: #000e58;
+
+//     img {
+//       transition: all 0.2s linear;
+//     }
+//   }
+
+//   &__info {
+//     margin-top: 1rem;
+//   }
+
+//   &__info-pins {
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+
+//     &--icon {
+//       width: 50%;
+//     }
+//   }
+
+//   &__title {
+//     transition: 1s all linear;
+//     font-size: 2rem;
+//     position: relative;
+//     padding: 0.5rem;
+
+//     &::after {
+//       content: '';
+//       position: absolute;
+//       width: 0;
+//       height: 2px;
+//       background-color: #000e58;
+//       bottom: 0;
+//       left: 50%;
+//       transform: translateX(-50%);
+//       transition: all 0.2s linear;
+//     }
+//   }
+
+//   &__difficulty {
+//     font-size: 1.5rem;
+//   }
+
+//   &__summary {
+//     font-size: 1.3rem;
+//   }
+
+//   &__img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//   }
+
+//   &__footer-visible {
+//     padding: 1rem;
+//   }
+
+//   &__footer-invisible {
+//     transform: translateY(20rem);
+//     transition: 0.2s all ease-in-out;
+//   }
+
+//   &__footer {
+//     background-color: #e9e9e9;
+//     height: 50%;
+//     text-align: center;
+//     transition: all 0.1s ease-in-out;
+
+//     &:hover {
+//       transform: translateY(-10rem);
+//     }
+//   }
+
+//   &__reserve-button {
+//     font-size: 2rem;
+//     text-transform: uppercase;
+//     color: white;
+//     border: 3px solid white;
+//     position: absolute;
+//     left: 50%;
+//     transform: translate(-50%, -22rem);
+//     top: 20%;
+//     transition: all 0.1s ease-in-out;
+//     z-index: 100;
+//     padding: 2rem 2em;
+//     background-color: transparent;
+//   }
+
+//   &__details-button {
+//     color: #f7be3f;
+//     background-color: white;
+//     border: 2px solid #f7be3f;
+//     padding: 1.5rem 3.5rem;
+//     margin-top: 1rem;
+//     border-radius: 50rem;
+//     text-transform: uppercase;
+
+//     font-weight: 700;
+//   }
+
+//   &__info-pins {
+//     display: flex;
+//     flex-wrap: wrap;
+
+//     &--icon {
+//       font-size: 1.7rem;
+//       width: 50%;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//     }
+//   }
+// }

@@ -1,0 +1,8 @@
+.mapContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  clip-path: polygon(0 11rem, 100% 0, 100% calc(100% - 11rem), 0 100%);
+}
