@@ -34,7 +34,7 @@ const Tour = () => {
 	const renderButton = () => {
 		const booking = auth.user.bookings.find((el) => el.tour === tour.id);
 
-		console.log(auth.user.bookings);
+		console.log(booking);
 
 		if (!booking) {
 			return (

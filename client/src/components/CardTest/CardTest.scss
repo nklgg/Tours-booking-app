@@ -1,0 +1,91 @@
+// .card {
+//   height: 40rem;
+//   width: 30rem;
+//   background-color: white;
+//   position: relative;
+
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     height: 3px;
+//     background-color: red;
+//     bottom: 0;
+//     width: 100%;
+//     // display: none;
+//   }
+//   &:hover &__heading {
+//     height: 100%;
+//   }
+
+//   &:hover &__heading::after {
+//     opacity: 0.4;
+//   }
+
+//   &:hover &__description {
+//     color: white;
+//     bottom: 5rem;
+//   }
+
+//   &:hover &__author {
+//     bottom: 90%;
+//   }
+
+//   &__heading {
+//     width: 100%;
+//     height: 70%;
+//     background-color: #06004d;
+//     position: relative;
+//     transition: 0.3s all ease-in-out;
+//     text-transform: capitalize;
+
+//     h3 {
+//       font-size: 1.5rem;
+//     }
+
+//     p {
+//       color: whitesmoke;
+//       font-size: 1rem;
+//     }
+
+//     &::after {
+//       content: "";
+//       background-image: url("/uploads/tours/tour-1-1.jpg");
+//       position: absolute;
+//       // opacity: 0.5;
+//       height: 100%;
+//       width: 100%;
+//       background-size: cover;
+//       background-position: center;
+//       transition: 0.3s all ease-in-out;
+//     }
+//   }
+
+//   &__author {
+//     position: absolute;
+//     bottom: 2rem;
+//     left: 2rem;
+//     z-index: 999;
+//     color: white;
+//     transition: all 0.3s ease-in-out;
+//   }
+
+//   &__description {
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     padding: 1rem;
+//     transition: all 0.3s ease-out;
+//     background-color: transparent;
+//     height: 30%;
+
+//     h3 {
+//       font-size: 2rem;
+//       text-transform: capitalize;
+//     }
+
+//     p {
+//       font-size: 1.2rem;
+//       color: grey;
+//     }
+//   }
+// }

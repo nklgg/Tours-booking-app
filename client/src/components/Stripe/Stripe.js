@@ -75,7 +75,7 @@ const StripeButton = styled.button`
 
 
 
-	&::after {
+	/* &::after {
 		content: 'processing...';
 		position: absolute;
 		top: 0;
@@ -87,7 +87,7 @@ const StripeButton = styled.button`
 		padding: 1.5rem 5rem;
 		font-size: 2rem;
 		display: none;
-	}
+	} */
 
 
 	@media (max-width: 768px) {
@@ -99,11 +99,12 @@ const StripeButton = styled.button`
 const SpinnerWrapper = styled.div`
 	transition: all 0.3s ease-in-out;
 	position: absolute;
-	left: 70%;
-	transform: translateX(4rem);
+	left: 35%;
+	left: ${state => state.clicked && '15%'};
+	/* transform: translateX(4rem);
 	transform: ${(state) =>
-		state.clicked ? 'translateX(40px)' : 'translateX(0)'};
-	opacity: ${(state) => (state.clicked ? '1' : '0')}; ;
+		state.clicked ? 'translateX(40px)' : 'translateX(0)'}; */
+	opacity: ${state => state.clicked ? 1 : 0};
 `;
 
 export default Stripe;

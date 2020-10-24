@@ -6,13 +6,16 @@ import styled from 'styled-components';
 import './Signin.scss';
 import Loader from '../../utils/Loader.js/Spinner';
 import { Formik, Form, Field } from 'formik';
+import Spinner from '../../utils/Loader.js/Spinner'
 import Alert from '../../utils/ErrorAlert/ErrorAlert';
+// import SpinnerWrapper from '../../utils/SpinnerWrapper'
 import * as Yup from 'yup';
+
 
 const Signin = () => {
 	// const [email, setEmail] = useState('');
 	// const [password, setPassword] = useState('');
-
+	const [clicked, setClicked] = useState(false);
 	let history = useHistory();
 	const auth = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
@@ -58,20 +61,25 @@ const Signin = () => {
 				validationSchema={SignupSchema}
 				onSubmit={(values) => {
 					// same shape as initial values
+					setClicked(true);
 					dispatch(signIn(values));
 
 					console.log(values);
 				}}>
 				{({ errors, touched }) => (
 					<Form className='form'>
-						<h1 className='form__title'>Signup</h1>
+						<h1 className='form__title'>log into your account</h1>
 						<label className='form__label' htmlFor='email'>
 							email address
 						</label>
 						<Field
 							style={{
 								borderBottom: `${
-									errors.email ? '2px solid red' : '2px solid green'
+									touched.email
+										? errors.email
+											? '2px solid red'
+											: '2px solid green'
+										: null
 								}`,
 							}}
 							placeholder='mail@example.com'
@@ -89,7 +97,11 @@ const Signin = () => {
 						<Field
 							style={{
 								borderBottom: `${
-									errors.password ? '2px solid red' : '2px solid green'
+									touched.password
+										? errors.password
+											? '2px solid red'
+											: '2px solid green'
+										: null
 								}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
@@ -103,8 +115,12 @@ const Signin = () => {
 							<div style={{ height: '1.6rem' }} />
 						)}
 
-						<button className='form__button' type='submit'>
-							submit
+						<button style={{display: 'flex', alignItems: 'center', position: 'relative'}} className='form__button' type='submit'>
+							submit <SpinnerWrapper clicked={auth.loading}>
+								
+								<Spinner  />
+								</SpinnerWrapper>
+							
 						</button>
 						{/* <span>{auth.loading && <Loader />}</span> */}
 
@@ -135,5 +151,16 @@ const Signin = () => {
 		//   </div>
 	);
 };
+
+const SpinnerWrapper = styled.div `
+	/* display: ${state => state.clicked ? 'inline-block' : 'none'}; */
+	position: absolute;
+	left: 40%;
+	left: ${state => state.clicked && '20%'};
+	transition: all .2s ease-in-out;
+	opacity: ${state => state.clicked ? '1' : '0'};
+
+
+`
 
 export default Signin;

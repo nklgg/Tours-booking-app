@@ -1,52 +1,55 @@
-@import '../../index';
+@import "../../index";
 .form {
-	max-width: 60rem;
-	margin: 0 auto;
-	background-color: white;
-	padding: 7rem;
-	margin-top: 10rem;
-	border-radius: 1rem;
-	min-height: 50rem;
+  max-width: 60rem;
+  margin: 0 auto;
+  background-color: white;
+  padding: 7rem;
+  margin-top: 10rem;
+  border-radius: 1rem;
+  min-height: 50rem;
 
-	&__title {
-		font-size: 3rem;
-		margin-bottom: 3rem;
-		text-transform: uppercase;
-	}
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, $light-blue, $dark-blue);
+    background-clip: text;
+    color: transparent;
+  }
 
-	&__label {
-		font-size: 1.5rem;
-		text-transform: capitalize;
-		display: inline-block;
-	}
+  &__label {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    display: inline-block;
+  }
 
-	&__label:last-child {
-		margin-top: 3rem;
-	}
+  &__label:last-child {
+    margin-top: 3rem;
+  }
 
-	&__input {
-		padding: 1.5rem;
-		font-size: 1.5rem;
-		width: 100%;
-		// padding: 12px 20px;
-		margin: 8px 0;
-		display: inline-block;
-		border: none;
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
+  &__input {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    width: 100%;
+    // padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
-	&__button {
-		margin-top: 2rem;
-		padding: 1.5rem 4rem;
-		border-radius: 100rem;
-		text-transform: uppercase;
-		font-size: 1.5rem;
-		background-color: $dark-blue;
-		color: white;
-		border: none;
-		cursor: pointer;
-	}
+  &__button {
+    margin-top: 2rem;
+    padding: 1.5rem 4rem;
+    border-radius: 100rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    background-color: $dark-blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
 }
 
 // .form__container {

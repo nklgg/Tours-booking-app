@@ -1,12 +1,12 @@
 .review {
-  width: 90%;
+  max-width: 60rem;
   background-color: white;
   margin: 0 auto;
-  padding: 5rem;
+  padding: 3rem;
   border-radius: 1rem;
   &__form {
-    width: 50%;
     margin: 0 auto;
+    width: 80%;
   }
 
   &__label {

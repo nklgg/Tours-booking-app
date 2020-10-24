@@ -65,7 +65,7 @@ export const getUser = () => {
     } catch (err) {
       console.log(err.response);
       dispatch({
-        type: 'SIGNUP_FAILED',
+        type: 'AUTH_FAILED',
         payload: err.response,
       });
     }

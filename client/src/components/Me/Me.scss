@@ -1,95 +1,97 @@
-@import '../../index';
+@import "../../index";
 
 .me {
-	display: flex;
-	// padding: 5rem;
-	margin-top: 5rem;
-	max-width: 120rem;
-	margin: 0 auto;
-	margin-top: 10rem;
+  display: flex;
+  padding: 5rem;
+  margin-top: 5rem;
+  max-width: 120rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 5rem;
 
-	&__sidemenu {
-		background: rgb(0, 101, 157);
-		background: linear-gradient(
-			to right bottom,
-			$light-blue 33%,
-			$dark-blue 100%
-		);
-		padding: 5rem 0;
-		width: 30%;
-	}
+  &__sidemenu {
+    background: rgb(0, 101, 157);
+    background: linear-gradient(
+      to right bottom,
+      $light-blue 33%,
+      $dark-blue 100%
+    );
+    padding: 5rem 0;
+    width: 30%;
+  }
 
-	&__list-item {
-		font-size: 2rem;
-		color: white;
-		list-style: none;
-		position: relative;
-		display: flex;
-		align-items: center;
-		&:first-child::after {
-			width: 5px;
-			height: 100%;
-			position: absolute;
-			background-color: white;
-			left: 0;
-			top: 0;
-		}
+  &__list-item {
+    font-size: 1.5rem;
+    color: white;
+    list-style: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    &:first-child::after {
+      width: 5px;
+      height: 100%;
+      position: absolute;
+      background-color: white;
+      left: 0;
+      top: 0;
+    }
 
-		svg {
-			margin-left: 3rem;
-			margin-right: 2rem;
-			transition: transform 0.2s ease-in-out;
-		}
+    svg {
+      margin-left: 3rem;
+      margin-right: 2rem;
+      transition: transform 0.2s ease-in-out;
+      font-size: 2.5rem;
+    }
 
-		a {
-			text-decoration: none;
-			color: white;
-			padding: 1rem 0;
-			display: block;
-			transition: transform 0.2s ease-in-out;
-			width: 100%;
-		}
+    a {
+      text-decoration: none;
+      color: white;
+      padding: 1rem 0;
+      display: block;
+      transition: transform 0.2s ease-in-out;
+      width: 100%;
+    }
 
-		&:after {
-			content: '';
-			width: 0;
-			height: 100%;
-			position: absolute;
-			background-color: white;
-			left: 0;
-			top: 0;
-			transition: width 0.2s ease-in-out;
-		}
-	}
+    &:after {
+      content: "";
+      width: 0;
+      height: 100%;
+      position: absolute;
+      background-color: white;
+      left: 0;
+      top: 0;
+      transition: width 0.2s ease-in-out;
+    }
+  }
 
-	&__list-item:hover:after {
-		width: 5px;
-	}
+  &__list-item:hover:after {
+    width: 5px;
+  }
 
-	&__list-item:hover a,
-	&__list-item:hover svg {
-		transform: translateX(3px);
-	}
+  &__list-item:hover a,
+  &__list-item:hover svg {
+    transform: translateX(3px);
+  }
 
-	&__forms-container {
-		padding: 5rem 0rem;
-		width: 70%;
-		background-color: white;
-		position: relative;
-	}
+  &__forms-container {
+    padding: 5rem 0rem;
+    width: 70%;
+    background-color: white;
+    position: relative;
+  }
 }
 
 @media all and (max-width: 768px) {
-	.me {
-		margin-top: 0;
-		padding-top: 0rem;
-	}
+  .me {
+    margin-top: 0;
+    padding-top: 0rem;
+  }
 
-	.me__sidemenu {
-		display: none;
-	}
+  .me__sidemenu {
+    display: none;
+  }
 
-	.me__forms-container {
-		width: 100vw;
-	}
+  .me__forms-container {
+    width: 100vw;
+  }
 }

@@ -4,6 +4,7 @@ const initialState = {
   error: null,
   user: null,
   loginError: null,
+  signUpError: null,
 };
 
 export default (state = initialState, action) => {
@@ -19,12 +20,18 @@ export default (state = initialState, action) => {
         user: action.payload,
         loginError: false,
       };
+      case 'AUTH_FAILED':
+      return {
+        ...state,
+        loading: false,
+        
+      }
     case 'SIGNUP_FAILED':
       return {
         ...state,
         loading: false,
         authenticated: false,
-        error: action.payload,
+        signUpError: action.payload,
       };
     case 'SIGN_IN_ERROR':
       return {

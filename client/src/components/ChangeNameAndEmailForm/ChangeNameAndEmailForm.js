@@ -7,6 +7,9 @@ import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Alert from '../../utils/ErrorAlert/ErrorAlert';
+import Spinner from '../../utils/Loader.js/Spinner';
+import styled from 'styled-components';
+
 import { dnsPrefetchControl } from 'helmet';
 
 const ChangeNameAndEmailForm = ({ user }) => {
@@ -14,6 +17,7 @@ const ChangeNameAndEmailForm = ({ user }) => {
 	// const [email, setEmail] = useState(user.email);
 	const [photo, setPhoto] = useState();
 	const [error, setError] = useState(null);
+	const [clicked, setClicked] = useState(false);
 	let dispatch = useDispatch();
 	let history = useHistory();
 
@@ -49,6 +53,7 @@ const ChangeNameAndEmailForm = ({ user }) => {
 				}}
 				validationSchema={SignupSchema}
 				onSubmit={async (values) => {
+					setClicked(true);
 					// same shape as initial values
 					const formData = new FormData();
 					formData.append('photo', photo);
@@ -134,8 +139,11 @@ const ChangeNameAndEmailForm = ({ user }) => {
 							</label>
 						</div>
 
-						<button className='form__button' type='submit'>
+						<button onClick={() => setClicked(true)} style={{position: 'relative', display: 'flex', alignItems: 'center'}} className='form__button' type='submit'>
 							submit
+							 <SpinnerWrapper clicked={clicked}>
+								<Spinner />
+							</SpinnerWrapper>
 						</button>
 
 						{error && <Alert message={error.data.message} />}
@@ -144,50 +152,20 @@ const ChangeNameAndEmailForm = ({ user }) => {
 			</Formik>
 		</div>
 
-		//   <form onSubmit={(e) => handleOnSubmit(e)} className="change-form">
-		//     <h3>Your account settings</h3>
-		//     <label htmlFor="name">name</label>
-		//     <input
-		//       onChange={(e) => handleOnChange(e)}
-		//       value={name}
-		//       className="change-form__name-input"
-		//       type="text"
-		//       id="name"
-		//       name="name"
-		//     />
-
-		//     <label htmlFor="email">email</label>
-		//     <input
-		//       onChange={(e) => handleOnChange(e)}
-		//       value={email}
-		//       className="change-form__email-input"
-		//       type="email"
-		//       id="email"
-		//       name="email"
-		//     />
-
-		//     <div className="change-form__form-group">
-		//       <img src={`uploads/users/${user.photo}`} alt="" />
-		//       <input
-		//         onChange={(e) => handleOnChange(e)}a
-		//         style={{ display: 'none' }}
-		//         className="form__file-input"
-		//         type="file"
-		//         id="files"
-		//         name="photo"
-		//       />
-		//       <label style={{ cursor: 'pointer' }} htmlFor="files">
-		//         Choose new photo
-		//       </label>
-		//     </div>
-		//     <div className="change-form__button-container">
-		//       <button className="change-form__button" type="submit">
-		//         submit form
-		//       </button>
-		//     </div>
-		//   </form>
-		// );
 	);
 };
+
+const SpinnerWrapper = styled.div `
+	/* display: ${state => state.clicked ? 'inline-block' : 'none'}; */
+	position: absolute;
+	left: 50%;
+	left: 40%; 
+	left: ${state => state.clicked && '15%'}; 
+	transition: all .2s ease-in-out; 
+	opacity: ${state => state.clicked ? '1' : '0'};
+
+
+`;
+
 
 export default ChangeNameAndEmailForm;

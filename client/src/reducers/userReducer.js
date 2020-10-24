@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     case 'USER':
       return { ...state, user: action.payload, error: null };
 
-    case 'SIGNUP_FAILED':
+    case 'AUTH_FAILED':
       return {
         ...state,
         user: false,

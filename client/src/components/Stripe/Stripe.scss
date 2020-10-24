@@ -1,16 +1,18 @@
-@import '../../index';
+@import "../../index";
 .stripe-button {
-	display: flex;
-	margin-left: auto;
-	padding: 1.5rem 5rem;
-	background-color: $dark-blue;
-	border: none;
-	color: white;
-	border-radius: 5rem;
-	font-size: 2rem;
-	position: relative;
+  display: flex;
+  margin-left: auto;
+  padding: 1.5rem 5rem;
+  background-color: $dark-blue;
+  border: none;
+  color: white;
+  border-radius: 5rem;
+  font-size: 2rem;
+  position: relative;
 }
 
 .spinner {
-	transform: translateX(-15px);
+  transform: translate(-15px, 2px);
+  // position: absolute;
+  // left: 20%;
 }
