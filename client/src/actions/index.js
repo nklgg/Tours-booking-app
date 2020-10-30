@@ -95,6 +95,9 @@ export const patchUser = (formData) => {
 
 export const getTours = () => {
   return async function (dispatch, getState) {
+    dispatch({
+      type: 'TOURS_REQUESTED'
+    })
     console.log(getState().tours);
     if (!getState().tours.tours.length > 0) {
       try {
@@ -130,6 +133,31 @@ export const logout = () => {
     } catch (err) {
       dispatch({
         type: 'LOGOUT_FAILED',
+        payload: err.response,
+      });
+    }
+  };
+};
+
+
+export const getBookings = () => {
+  return async function (dispatch) {
+    dispatch({
+      type: 'BOOKINGS_REQUESTED',
+    });
+    try {
+      const res = await axios.get(`/api/v1/booking/my-tours`, {
+        withCredentials: true,
+      });
+      console.log(res);
+      dispatch({
+        type: 'BOOKINGS',
+        payload: res.data.tours,
+      });
+    } catch (err) {
+      console.log(err.response);
+      dispatch({
+        type: 'BOOKINGS_FAILED',
         payload: err.response,
       });
     }

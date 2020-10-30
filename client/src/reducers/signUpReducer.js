@@ -1,6 +1,6 @@
 const initialState = {
   loading: null,
-  authenticated: null,
+  authenticated: false,
   error: null,
   user: null,
   loginError: null,
@@ -20,11 +20,11 @@ export default (state = initialState, action) => {
         user: action.payload,
         loginError: false,
       };
-      case 'AUTH_FAILED':
+    case 'AUTH_FAILED':
       return {
         ...state,
         loading: false,
-        
+
       }
     case 'SIGNUP_FAILED':
       return {

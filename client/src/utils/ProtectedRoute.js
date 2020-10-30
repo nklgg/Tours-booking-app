@@ -2,49 +2,21 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const ProtectedRoute = ({ component: Component, routeName, ...rest }) => {
+const ProtectedRoute = ({ component: Component, auth, ...rest }) => {
   // Add your own authentication on the below line.
-  const isLoggedIn = useSelector((state) => state.auth.authenticated);
-  console.log('second');
-  const renderRoutes = () => {
-    if (routeName === 'me') {
-      return (
-        <Route
-          {...rest}
-          render={(props) =>
-            isLoggedIn ? (
-              <Component {...props} />
-            ) : (
-              <Redirect to={{ pathname: '/signin', state: { from: '/me' } }} />
-            )
-          }
-        />
-      );
-    } else if (routeName === 'signin') {
-      return (
-        <Route
-          {...rest}
-          render={(props) =>
-            !isLoggedIn ? (
-              <Component {...props} />
-            ) : (
-              <Redirect to={{ pathname: '/', state: { from: '/signin' } }} />
-            )
-          }
-        />
-      );
-    }
-  };
+  const isLoggedIn = useSelector((state) => state.auth);
+
+  console.log(auth.authenticated, auth.loading)
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn ? (
+        isLoggedIn.authenticated === true || isLoggedIn.loading ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: '/signin', state: { from: '/me' } }} />
-        )
+            <Redirect to='/signin' />
+          )
       }
     />
   );

@@ -22,20 +22,18 @@ function App() {
     console.log('first');
   }, []);
   return (
-    <div style={{backgroundColor: '#f5f5f5', }} className="App">
+    <div style={{ backgroundColor: '#f5f5f5', }} className="App">
       <Nav />
       {/* <Hamburger /> */}
       <Switch>
         <Route exact path="/" component={Home} />a
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin" component={Signin} />
-        {auth.authenticated === null ? (
-          <div />
-        ) : (
-          <ProtectedRoute routeName="me" exact path="/me" component={Me} />
-        )}
         <Route exact path="/tour/:slug" component={Tour} />
-        <Route exact path="/my-tours" component={Bookings} />
+
+        {auth.loading === false && <ProtectedRoute auth={auth} routeName="me" exact path="/me" component={Me} />}
+
+        {auth.loading === false && <ProtectedRoute auth={auth} exact path="/my-tours" component={Bookings} />};
         <Route exact path="/review" component={Review} />
       </Switch>
     </div>

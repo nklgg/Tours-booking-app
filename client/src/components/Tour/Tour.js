@@ -21,6 +21,8 @@ const Tour = () => {
 	let auth = useSelector((state) => state.auth);
 	let [tour, setTour] = useState();
 
+	console.log("TOUR CALLEDDDDD")
+
 	useEffect(() => {
 		getTour();
 	}, []);
@@ -32,7 +34,11 @@ const Tour = () => {
 	};
 
 	const renderButton = () => {
-		const booking = auth.user.bookings.find((el) => el.tour === tour.id);
+		let booking;
+		if(auth.user.bookings) {
+
+			booking = auth.user.bookings.find((el) => el.tour === tour.id);
+		} 
 
 		console.log(booking);
 

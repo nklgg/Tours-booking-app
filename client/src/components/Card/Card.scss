@@ -137,8 +137,14 @@
     transition: all 0.2s ease-in-out;
     padding: 1rem 3rem;
 
-    &:hover {
-      transform: translateY(-10rem);
+    // &:hover {
+    //   transform: translateY(-12rem);
+    // }
+  }
+
+  @-moz-document url-prefix() {
+    &__reserve-button {
+      width: 21rem;
     }
   }
 

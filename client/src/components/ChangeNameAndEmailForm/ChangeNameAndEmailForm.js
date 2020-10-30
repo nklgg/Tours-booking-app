@@ -44,7 +44,7 @@ const ChangeNameAndEmailForm = ({ user }) => {
 	});
 
 	return (
-		<div>
+		<div className="form__change-name">
 			<Formik
 				initialValues={{
 					name: user.name,
@@ -71,13 +71,12 @@ const ChangeNameAndEmailForm = ({ user }) => {
 						</label>
 						<Field
 							style={{
-								borderBottom: `${
-									touched.name
-										? errors.name
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.name
+									? errors.name
+										? '2px solid red'
+										: '2px solid green'
+									: null
+									}`,
 							}}
 							placeholder='mail@example.com'
 							className='form__input'
@@ -88,20 +87,19 @@ const ChangeNameAndEmailForm = ({ user }) => {
 						{errors.name && touched.name ? (
 							<div>{errors.name}</div>
 						) : (
-							<div style={{ height: '1.6rem' }}></div>
-						)}
+								<div style={{ height: '1.6rem' }}></div>
+							)}
 						<label className='form__label' htmlFor='email'>
 							email
 						</label>
 						<Field
 							style={{
-								borderBottom: `${
-									touched.email
-										? errors.email
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.email
+									? errors.email
+										? '2px solid red'
+										: '2px solid green'
+									: null
+									}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
 							type='email'
@@ -112,8 +110,8 @@ const ChangeNameAndEmailForm = ({ user }) => {
 						{errors.email && touched.email ? (
 							<div>{errors.email}</div>
 						) : (
-							<div style={{ height: '1.6rem' }} />
-						)}
+								<div style={{ height: '1.6rem' }} />
+							)}
 
 						<label className='form__label' htmlFor='confirmPassword'>
 							confirm password
@@ -131,15 +129,15 @@ const ChangeNameAndEmailForm = ({ user }) => {
 							{errors.confirmPassword && touched.confirmPassword ? (
 								<div>{errors.confirmPassword}</div>
 							) : (
-								<div style={{ height: '1.6rem' }} />
-							)}
+									<div style={{ height: '1.6rem' }} />
+								)}
 
 							<label style={{ cursor: 'pointer' }} htmlFor='files'>
 								Choose new photo
 							</label>
 						</div>
 
-						<button onClick={() => setClicked(true)} style={{position: 'relative', display: 'flex', alignItems: 'center'}} className='form__button' type='submit'>
+						<button onClick={() => setClicked(true)} style={{ position: 'relative', display: 'flex', alignItems: 'center' }} className='form__button' type='submit'>
 							submit
 							 <SpinnerWrapper clicked={clicked}>
 								<Spinner />
@@ -155,7 +153,7 @@ const ChangeNameAndEmailForm = ({ user }) => {
 	);
 };
 
-const SpinnerWrapper = styled.div `
+const SpinnerWrapper = styled.div`
 	/* display: ${state => state.clicked ? 'inline-block' : 'none'}; */
 	position: absolute;
 	left: 50%;
@@ -163,8 +161,6 @@ const SpinnerWrapper = styled.div `
 	left: ${state => state.clicked && '15%'}; 
 	transition: all .2s ease-in-out; 
 	opacity: ${state => state.clicked ? '1' : '0'};
-
-
 `;
 
 

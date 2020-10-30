@@ -60,7 +60,7 @@ const PasswordChangeForm = () => {
 	});
 
 	return (
-		<div>
+		<div className="form__change-password" >
 			<Formik
 				initialValues={{
 					currentPassword: '',
@@ -101,13 +101,12 @@ const PasswordChangeForm = () => {
 								// 		? '2px solid red'
 								// 		: '2px solid green'
 								// }`,
-								borderBottom: `${
-									touched.currentPassword
-										? errors.currentPassword
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.currentPassword
+									? errors.currentPassword
+										? '2px solid red'
+										: '2px solid green'
+									: null
+									}`,
 							}}
 							placeholder='mail@example.com'
 							className='form__input'
@@ -117,20 +116,19 @@ const PasswordChangeForm = () => {
 						{errors.currentPassword && touched.currentPassword ? (
 							<div>{errors.currentPassword}</div>
 						) : (
-							<div style={{ height: '1.6rem' }}></div>
-						)}
+								<div style={{ height: '1.6rem' }}></div>
+							)}
 						<label className='form__label' htmlFor='newPassword'>
 							new password
 						</label>
 						<Field
 							style={{
-								borderBottom: `${
-									touched.newPassword
-										? errors.newPassword
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.newPassword
+									? errors.newPassword
+										? '2px solid red'
+										: '2px solid green'
+									: null
+									}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
 							type='password'
@@ -140,21 +138,20 @@ const PasswordChangeForm = () => {
 						{errors.newPassword && touched.newPassword ? (
 							<div>{errors.newPassword}</div>
 						) : (
-							<div style={{ height: '1.6rem' }} />
-						)}
+								<div style={{ height: '1.6rem' }} />
+							)}
 
 						<label className='form__label' htmlFor='confirmPassword'>
 							confirm password
 						</label>
 						<Field
 							style={{
-								borderBottom: `${
-									touched.confirmPassword
-										? errors.confirmPassword
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.confirmPassword
+									? errors.confirmPassword
+										? '2px solid red'
+										: '2px solid green'
+									: null
+									}`,
 							}}
 							placeholder='mail@example.com'
 							className='form__input'
@@ -164,8 +161,8 @@ const PasswordChangeForm = () => {
 						{errors.confirmPassword && touched.confirmPassword ? (
 							<div>{errors.confirmPassword}</div>
 						) : (
-							<div style={{ height: '1.6rem' }} />
-						)}
+								<div style={{ height: '1.6rem' }} />
+							)}
 
 						<button className='form__button' type='submit'>
 							submit
@@ -179,7 +176,7 @@ const PasswordChangeForm = () => {
 					</Form>
 				)}
 			</Formik>
-		</div>
+		</div >
 	);
 };
 

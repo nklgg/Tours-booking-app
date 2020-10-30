@@ -52,7 +52,7 @@ const Signin = () => {
 	});
 
 	return (
-		<div style={{ height: '100vh' }}>
+		<div className="signin__form" style={{ height: '100vh' }}>
 			<Formik
 				initialValues={{
 					email: '',
@@ -74,13 +74,12 @@ const Signin = () => {
 						</label>
 						<Field
 							style={{
-								borderBottom: `${
-									touched.email
-										? errors.email
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.email
+									? errors.email
+										? '2px solid red'
+										: '2px solid green'
+									: null
+									}`,
 							}}
 							placeholder='mail@example.com'
 							className='form__input'
@@ -89,20 +88,19 @@ const Signin = () => {
 						{errors.email && touched.email ? (
 							<div>{errors.email}</div>
 						) : (
-							<div style={{ height: '1.6rem' }}></div>
-						)}
+								<div style={{ height: '1.6rem' }}></div>
+							)}
 						<label className='form__label' htmlFor='email'>
 							password
 						</label>
 						<Field
 							style={{
-								borderBottom: `${
-									touched.password
-										? errors.password
-											? '2px solid red'
-											: '2px solid green'
-										: null
-								}`,
+								borderBottom: `${touched.password
+									? errors.password
+										? '2px solid #ff4400'
+										: '2px solid #00eb07'
+									: null
+									}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
 							type='password'
@@ -112,15 +110,15 @@ const Signin = () => {
 						{errors.password && touched.password ? (
 							<div>{errors.password}</div>
 						) : (
-							<div style={{ height: '1.6rem' }} />
-						)}
+								<div style={{ height: '1.6rem' }} />
+							)}
 
-						<button style={{display: 'flex', alignItems: 'center', position: 'relative'}} className='form__button' type='submit'>
+						<button style={{ display: 'flex', alignItems: 'center', position: 'relative' }} className='form__button' type='submit'>
 							submit <SpinnerWrapper clicked={auth.loading}>
-								
-								<Spinner  />
-								</SpinnerWrapper>
-							
+
+								<Spinner />
+							</SpinnerWrapper>
+
 						</button>
 						{/* <span>{auth.loading && <Loader />}</span> */}
 
@@ -128,8 +126,8 @@ const Signin = () => {
 						{auth.loginError ? (
 							<Alert message={auth.loginError.data.message} />
 						) : (
-							<div style={{ height: '3.6rem', marginTop: '2rem' }}></div>
-						)}
+								<div style={{ height: '3.6rem', marginTop: '2rem' }}></div>
+							)}
 					</Form>
 				)}
 			</Formik>
@@ -152,7 +150,7 @@ const Signin = () => {
 	);
 };
 
-const SpinnerWrapper = styled.div `
+const SpinnerWrapper = styled.div`
 	/* display: ${state => state.clicked ? 'inline-block' : 'none'}; */
 	position: absolute;
 	left: 40%;

@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getUser, getTours } from '../../actions/index';
 import Card from '../Card/Card';
-import CardTest from '../CardTest/CardTest';
+import CardList from '../CardList/CardList';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const tours = useSelector(state => state.tours)
+  let slug = useHistory();
 
-  useEffect(() => {
-    // dispatch(getUser());
-  }, []);
 
   useEffect(() => {
     dispatch(getTours());
-    console.log('GET TOURS ACTIVATED MAN');
   }, []);
 
+
+  // useEffect(() => {
+  //   tours.tours.length > 0 && localStorage.setItem('numberOfTours', tours.tours.length)
+  // }, [tours])
+
   return (
-    <div>
-      <Card />
-      {/* <CardTest /> */}
-    </div>
+
+    <CardList slug={slug} data={tours} />
+
   );
 };
 

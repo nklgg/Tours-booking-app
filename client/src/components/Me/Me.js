@@ -1,33 +1,28 @@
 import './Me.scss';
 
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUser } from '../../actions/index';
 import { FiSettings, FiBriefcase, FiStar, FiCreditCard } from 'react-icons/fi';
 import ChangeNameAndEmailForm from '../ChangeNameAndEmailForm/ChangeNameAndEmailForm';
 import PasswordChangeForm from '../PasswordChangeForm/PasswordChangeForm';
 
 const Me = () => {
-  let dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
-  const history = useHistory();
 
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, []);
 
   return (
+
     <div className="me">
       <div className="me__sidemenu">
         <ul className="me__list">
           <li className="me__list-item">
             <FiSettings />
-            <a href="">settings</a>
+            <Link to={'/me'} href="">settings</Link>
           </li>
           <li className="me__list-item">
             <FiBriefcase />
-            <a href="">my bookings</a>
+            <Link to='/my-tours' href="">my bookings</Link>
           </li>
           <li className="me__list-item">
             <FiStar />
@@ -44,7 +39,8 @@ const Me = () => {
         <PasswordChangeForm />
       </div>
     </div>
-  );
+  )
+
 };
 
 export default Me;
