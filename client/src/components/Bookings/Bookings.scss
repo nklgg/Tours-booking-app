@@ -1,3 +1,13 @@
+@import '../../index';
+
+.no-tour-title {
+	text-align: center;
+	padding-top: 15rem;
+	font-size: 4rem;
+	text-transform: capitalize;
+	color: $input-grey;
+}
+
 // .card-container {
 //   display: flex;
 //   justify-content: space-evenly;

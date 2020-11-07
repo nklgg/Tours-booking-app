@@ -3,7 +3,7 @@ const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
+const AppError = require('../utils/appError');
 const Email = require('./../utils/email');
 
 const signToken = (id) => {
@@ -19,10 +19,10 @@ const createSendToken = (user, statusCode, req, res) => {
 			Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
 		),
 		httpOnly: true,
-		// secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
+		// secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
 	};
 
-	if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+	// if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
 	res.cookie('jwt', token, cookieOptions);
 
@@ -57,6 +57,8 @@ exports.login = catchAsync(async (req, res, next) => {
 
 	// 1) Check if email and password exist
 	if (!email || !password) {
+		// return next(new AppError('Neki error', 404));
+		// return console.log(new AppError('error neki mak', 405));
 		return next(new AppError('Please provide email and password!', 400));
 	}
 	// 2) Check if user exists && password is correct

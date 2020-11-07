@@ -5,42 +5,13 @@ import { useHistory } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Alert from '../../utils/ErrorAlert/ErrorAlert';
+import ButtonWithSpinner from '../../utils/ButtonWithSpinner/ButtonWithSpinner';
+import './PasswordChangeForm';
 
 const PasswordChangeForm = () => {
-	// const [currentPassword, setCurrentPassword] = useState('');
-	// const [newPassword, setNewPassword] = useState('');
-	// const [confirmPassword, setConfirmPassword] = useState('');
 	const [error, setError] = useState(null);
+	const [clicked, setClicked] = useState(false);
 	let history = useHistory();
-
-	// const handleOnChange = (e) => {
-	// 	e.target.name === 'currentPassword' && setCurrentPassword(e.target.value);
-	// 	e.target.name === 'newPassword' && setNewPassword(e.target.value);
-	// 	e.target.name === 'confirmPassword' && setConfirmPassword(e.target.value);
-	// };
-
-	// console.log(currentPassword, newPassword, confirmPassword);
-
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	try {
-	// 		const res = await axios.patch(
-	// 			`/api/v1/users/updateMyPassword`,
-	// 			{
-	// 				passwordCurrent: currentPassword,
-	// 				password: newPassword,
-	// 				passwordConfirm: confirmPassword,
-	// 			},
-	// 			{
-	// 				withCredentials: true,
-	// 			}
-	// 		);
-	// 		history.push('/');
-	// 	} catch (err) {
-	// 		console.log(err.response);
-	// 		setError(err.response);
-	// 	}
-	// };
 
 	const SignupSchema = Yup.object().shape({
 		currentPassword: Yup.string()
@@ -60,7 +31,7 @@ const PasswordChangeForm = () => {
 	});
 
 	return (
-		<div className="form__change-password" >
+		<div className='changePassword__wrapper'>
 			<Formik
 				initialValues={{
 					currentPassword: '',
@@ -70,6 +41,7 @@ const PasswordChangeForm = () => {
 				validationSchema={SignupSchema}
 				onSubmit={async (values) => {
 					// same shape as initial values
+					setClicked(true);
 					try {
 						const res = await axios.patch(
 							`/api/v1/users/updateMyPassword`,
@@ -86,12 +58,15 @@ const PasswordChangeForm = () => {
 					} catch (err) {
 						console.log(err.response);
 						setError(err.response);
+						setClicked(false);
 					}
 				}}>
 				{({ errors, touched }) => (
-					<Form className='form'>
-						<h1 className='form__title'>password change</h1>
-						<label className='form__label' htmlFor='currentPassword'>
+					<Form className='changePassword__form'>
+						<h1 className='changePassword__form-title'>password change</h1>
+						<label
+							className='changePassword__form-label'
+							htmlFor='currentPassword'>
 							current password
 						</label>
 						<Field
@@ -101,72 +76,79 @@ const PasswordChangeForm = () => {
 								// 		? '2px solid red'
 								// 		: '2px solid green'
 								// }`,
-								borderBottom: `${touched.currentPassword
-									? errors.currentPassword
-										? '2px solid red'
-										: '2px solid green'
-									: null
-									}`,
+								borderBottom: `${
+									touched.currentPassword
+										? errors.currentPassword
+											? '2px solid red'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='mail@example.com'
-							className='form__input'
+							className='changePassword__form-input'
 							name='currentPassword'
 							type='password'
 						/>
 						{errors.currentPassword && touched.currentPassword ? (
 							<div>{errors.currentPassword}</div>
 						) : (
-								<div style={{ height: '1.6rem' }}></div>
-							)}
-						<label className='form__label' htmlFor='newPassword'>
+							<div style={{ height: '1.6rem' }}></div>
+						)}
+						<label className='changePassword__form-label' htmlFor='newPassword'>
 							new password
 						</label>
 						<Field
 							style={{
-								borderBottom: `${touched.newPassword
-									? errors.newPassword
-										? '2px solid red'
-										: '2px solid green'
-									: null
-									}`,
+								borderBottom: `${
+									touched.newPassword
+										? errors.newPassword
+											? '2px solid #ff6854'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
 							type='password'
-							className='form__input'
+							className='changePassword__form-input'
 							name='newPassword'
 						/>
 						{errors.newPassword && touched.newPassword ? (
 							<div>{errors.newPassword}</div>
 						) : (
-								<div style={{ height: '1.6rem' }} />
-							)}
+							<div style={{ height: '1.6rem' }} />
+						)}
 
-						<label className='form__label' htmlFor='confirmPassword'>
+						<label
+							className='changePassword__form-label'
+							htmlFor='confirmPassword'>
 							confirm password
 						</label>
 						<Field
 							style={{
-								borderBottom: `${touched.confirmPassword
-									? errors.confirmPassword
-										? '2px solid red'
-										: '2px solid green'
-									: null
-									}`,
+								borderBottom: `${
+									touched.confirmPassword
+										? errors.confirmPassword
+											? '2px solid #ff6854'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='mail@example.com'
-							className='form__input'
+							className='changePassword__form-input'
 							name='confirmPassword'
 							type='password'
 						/>
 						{errors.confirmPassword && touched.confirmPassword ? (
 							<div>{errors.confirmPassword}</div>
 						) : (
-								<div style={{ height: '1.6rem' }} />
-							)}
+							<div style={{ height: '1.6rem' }} />
+						)}
 
-						<button className='form__button' type='submit'>
-							submit
-						</button>
+						<ButtonWithSpinner
+							className='form__changeName-button'
+							title='submit'
+							clicked={clicked}
+						/>
 
 						{error && <Alert message={error.data.message} />}
 						{/* <span>{auth.loading && <Loader />}</span> */}
@@ -176,7 +158,7 @@ const PasswordChangeForm = () => {
 					</Form>
 				)}
 			</Formik>
-		</div >
+		</div>
 	);
 };
 

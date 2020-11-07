@@ -1,4 +1,10 @@
 @import '../../index';
+
+// .spinner {
+// 	position: absolute;
+// 	left: 50%;
+// }
+
 .tour {
 	text-align: center;
 	position: relative;
@@ -9,6 +15,19 @@
 	&__header {
 		font-size: 5rem;
 		color: white;
+		font-weight: 100;
+		line-height: 1.6;
+		text-transform: uppercase;
+
+		span {
+			padding: 1rem 1.5rem;
+			box-decoration-break: clone;
+			background-image: linear-gradient(
+				to bottom right,
+				rgba(0, 143, 222, 0.85),
+				rgba(0, 57, 122, 0.85)
+			);
+		}
 	}
 
 	&__info {
@@ -28,7 +47,6 @@
 	display: flex;
 	margin-top: -11rem;
 
-
 	&__pins {
 		display: flex;
 		align-items: center;
@@ -40,16 +58,19 @@
 	}
 
 	&__pins-left {
+		color: #575757;
 		margin-left: 1.5rem;
-		font-size: 2rem;
+		font-size: 1.5rem;
 		text-transform: capitalize;
 		font-weight: 700;
 	}
 
 	&__pins-right {
 		margin-left: 1.5rem;
-		font-size: 2rem;
 		font-weight: 100;
+		color: #575757;
+		font-size: 1.5rem;
+		text-transform: capitalize;
 	}
 
 	&__wrapper {
@@ -88,16 +109,18 @@
 	&__heading {
 		font-size: 2.5rem;
 		text-transform: uppercase;
-		color: $dark-blue;
+		color: transparent;
+		background-clip: text;
 		margin-bottom: 2rem;
 		text-align: left;
-		font-weight: 100;
+		font-weight: 500;
+		background-image: linear-gradient(to right, $light-blue, $dark-blue);
 	}
 
 	&__about {
 		width: 50%;
 		text-align: center;
-		padding: 5rem 15rem;
+		padding: 5rem 12rem;
 		padding-bottom: 15rem;
 		padding-top: 15rem;
 		background-color: white;
@@ -106,6 +129,7 @@
 			font-size: 1.7rem;
 			text-align: left;
 			line-height: 3rem;
+			font-weight: 300;
 		}
 	}
 }
@@ -129,67 +153,7 @@
 	width: 100%;
 }
 
-.reviews {
-	margin-top: -11rem;
-	display: flex;
-	flex-wrap: wrap;
-
-	background: rgb(2, 0, 36);
-	background: linear-gradient(
-		139deg,
-		rgba(2, 0, 36, 1) 0%,
-		rgba(0, 63, 162, 1) 0%,
-		rgba(0, 212, 255, 1) 100%
-	);
-	clip-path: polygon(0 11rem, 100% 0, 100% calc(100% - 11rem), 0 100%);
-	padding: 20rem 5rem;
-	&__box {
-		height: 25rem;
-		width: 40rem;
-
-		display: flex;
-		border-radius: 1rem;
-		overflow: hidden;
-		box-shadow: 2px 2px 10px #999;
-		margin: 0 3rem;
-		margin: 0 auto;
-	}
-
-	&__image-container {
-		background-color: #e4e4e4;
-		flex-basis: 40%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		img {
-			border-radius: 50rem;
-			height: 8rem;
-		}
-	}
-
-	&__info {
-		background-color: white;
-		flex-basis: 60%;
-	}
-
-	&__name {
-		font-size: 2rem;
-		text-align: center;
-		margin-top: 3rem;
-	}
-
-	&__review {
-		text-align: center;
-		margin-top: 3rem;
-		font-size: 1.4rem;
-		padding: 0 3rem;
-	}
-}
-
-
 @media screen and (max-width: 768px) {
-
 	.reviews {
 		padding: 20rem 2rem;
 	}
@@ -212,7 +176,6 @@
 		width: 100%;
 		padding: 10rem 3rem;
 		padding-bottom: 15rem;
-
 	}
 
 	.images__section {
@@ -224,5 +187,9 @@
 		&:not(:last-child) {
 			margin-bottom: -11rem;
 		}
+	}
+
+	.review {
+		// background-color: grey;
 	}
 }

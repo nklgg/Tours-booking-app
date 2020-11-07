@@ -3,10 +3,11 @@ import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 import axios from 'axios';
 import Spinner from '../../utils/Loader.js/Spinner';
+import ButtonWithSpinner from '../../utils/ButtonWithSpinner/ButtonWithSpinner';
 
 import './Stripe.scss';
 
-const Stripe = ({ tourId }) => {
+const Stripe = ({ tourId, title }) => {
 	const [session, setSession] = useState(false);
 	const [clicked, setClicked] = useState(false);
 
@@ -45,7 +46,7 @@ const Stripe = ({ tourId }) => {
 
 	return (
 		<StripeButton onClick={handleClick}>
-			book tour now!
+			{title}
 			<SpinnerWrapper clicked={clicked}>
 				<Spinner />
 			</SpinnerWrapper>
@@ -62,7 +63,7 @@ const StripeButton = styled.button`
 	align-items: center;
 	margin-left: auto;
 	padding: 1.5rem 5rem;
-	background-color: green;
+	background-color: #00397a;
 	border: none;
 	color: white;
 	border-radius: 5rem;
@@ -71,9 +72,6 @@ const StripeButton = styled.button`
 	cursor: pointer;
 	outline: none;
 	min-width: 23.4rem;
-
-
-
 
 	/* &::after {
 		content: 'processing...';
@@ -89,22 +87,21 @@ const StripeButton = styled.button`
 		display: none;
 	} */
 
-
 	@media (max-width: 768px) {
-	margin: 0 auto;
-	margin-top: 5rem;
-}
+		margin: 0 auto;
+		margin-top: 5rem;
+	}
 `;
 
 const SpinnerWrapper = styled.div`
 	transition: all 0.3s ease-in-out;
 	position: absolute;
 	left: 35%;
-	left: ${state => state.clicked && '15%'};
+	left: ${(state) => state.clicked && '30px'};
 	/* transform: translateX(4rem);
 	transform: ${(state) =>
 		state.clicked ? 'translateX(40px)' : 'translateX(0)'}; */
-	opacity: ${state => state.clicked ? 1 : 0};
+	opacity: ${(state) => (state.clicked ? 1 : 0)};
 `;
 
 export default Stripe;

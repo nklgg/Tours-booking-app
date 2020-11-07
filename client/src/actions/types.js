@@ -1,0 +1,12 @@
+export const AUTH_REQUESTED = 'AUTH_REQUESTED';
+export const AUTH = 'AUTH';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_SIGNIN_FAIL = 'AUTH_SIGNIN_FAIL';
+export const AUTH_SIGNUP_FAIL = 'AUTH_SIGNUP_FAIL';
+export const LOGOUT = 'LOGOUT';
+export const BOOKINGS_REQUESTED = 'BOOKINGS_REQUESTED';
+export const BOOKINGS = 'BOOKINGS';
+export const BOOKINGS_FAIL = 'BOOKINGS_FAIL';
+export const TOURS_REQUESTED = 'TOURS_REQUESTED';
+export const TOURS = 'TOURS';
+export const TOURS_FAIL = 'TOURS_FAIL';

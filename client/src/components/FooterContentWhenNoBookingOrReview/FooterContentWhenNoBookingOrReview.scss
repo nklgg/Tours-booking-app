@@ -1,0 +1,81 @@
+@import '../../index';
+
+.booktour__section {
+	padding: 15rem 3rem;
+}
+
+.booktour {
+	background-color: white;
+	max-width: 105rem;
+	margin: 0 auto;
+	padding: 7rem 5rem 7rem 14rem;
+	border-radius: 2rem;
+	display: flex;
+	align-items: center;
+	position: relative;
+
+
+
+}
+
+.img__container {
+	height: 10rem;
+	width: 10rem;
+	position: absolute;
+	left: 0;
+	overflow: hidden;
+
+	img {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		border-radius: 100%;
+		object-fit: cover;
+		left: 0;
+
+		&:nth-child(3) {
+			left: -4rem;
+		}
+
+		&:nth-child(2) {
+			left: -2rem;
+		}
+	}
+}
+
+.booktour__title {
+	&-heading {
+		font-size: 3rem;
+		color: #575757;
+		text-transform: uppercase;
+	}
+
+	&-description {
+		font-size: 2rem;
+		color: #575757;
+	}
+
+	&-button {
+		display: inline-block;
+		margin-left: auto;
+		padding: 1.5rem 5rem;
+		background-color: $dark-blue;
+		border: none;
+		color: white;
+		border-radius: 5rem;
+		font-size: 2rem;
+		text-transform: uppercase;
+	}
+}
+
+@media all and (max-width: 768px) {
+	.booktour {
+		padding: 5rem;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.img__container {
+		display: none;
+	}
+}

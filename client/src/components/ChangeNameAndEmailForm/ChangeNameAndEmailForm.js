@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ChangeNameAndEmailForm.scss';
 import { patchUser } from '../../actions/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
@@ -9,12 +9,14 @@ import * as Yup from 'yup';
 import Alert from '../../utils/ErrorAlert/ErrorAlert';
 import Spinner from '../../utils/Loader.js/Spinner';
 import styled from 'styled-components';
+import ButtonWithSpinner from '../../utils/ButtonWithSpinner/ButtonWithSpinner';
 
 import { dnsPrefetchControl } from 'helmet';
 
 const ChangeNameAndEmailForm = ({ user }) => {
 	// const [name, setName] = useState(user.name);
 	// const [email, setEmail] = useState(user.email);
+	const auth = useSelector((state) => state.auth);
 	const [photo, setPhoto] = useState();
 	const [error, setError] = useState(null);
 	const [clicked, setClicked] = useState(false);
@@ -25,31 +27,23 @@ const ChangeNameAndEmailForm = ({ user }) => {
 		e.target.name === 'photo' && setPhoto(e.target.files[0]);
 	};
 
-	// const handleOnSubmit = async (e) => {
-	// 	e.preventDefault();
-
-	// 	const formData = new FormData();
-	// 	formData.append('photo', photo);
-	// 	formData.append('email', email);
-	// 	formData.append('name', name);
-
-	// 	await dispatch(patchUser(formData));
-	// 	history.go(0);
-	// };
-
 	const SignupSchema = Yup.object().shape({
-		name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-
-		email: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
+		name: Yup.string()
+			.min(2, 'Too Short!')
+			.max(50, 'Too Long!')
+			.required('Required'),
+		email: Yup.string()
+			.min(2, 'Too Short!')
+			.max(50, 'Too Long!')
+			.required('Required'),
 	});
 
 	return (
-		<div className="form__change-name">
+		<div className='changeName__wrapper'>
 			<Formik
 				initialValues={{
 					name: user.name,
 					email: user.email,
-					photo: photo,
 				}}
 				validationSchema={SignupSchema}
 				onSubmit={async (values) => {
@@ -59,27 +53,37 @@ const ChangeNameAndEmailForm = ({ user }) => {
 					formData.append('photo', photo);
 					formData.append('email', values.email);
 					formData.append('name', values.name);
-
-					await dispatch(patchUser(formData));
-					history.go(0);
+					try {
+						await axios.patch(`/api/v1/users/updateMe`, formData, {
+							withCredentials: true,
+						});
+						setClicked(false);
+						history.go(0);
+					} catch (err) {
+						setError(err.response);
+						console.log(err.response);
+						setClicked(false);
+					}
+					// await dispatch(patchUser(formData));
 				}}>
 				{({ errors, touched, values }) => (
-					<Form className='form'>
-						<h1 className='form__title'>your account settings</h1>
-						<label className='form__label' htmlFor='name'>
+					<Form className='form__changeName'>
+						<h1 className='form__changeName-title'>your account settings</h1>
+						<label className='form__changeName-label' htmlFor='name'>
 							name
 						</label>
 						<Field
 							style={{
-								borderBottom: `${touched.name
-									? errors.name
-										? '2px solid red'
-										: '2px solid green'
-									: null
-									}`,
+								borderBottom: `${
+									touched.name
+										? errors.name
+											? '2px solid #ff6854'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='mail@example.com'
-							className='form__input'
+							className='form__changeName-input'
 							name='name'
 							type='text'
 							value={values.name}
@@ -87,36 +91,34 @@ const ChangeNameAndEmailForm = ({ user }) => {
 						{errors.name && touched.name ? (
 							<div>{errors.name}</div>
 						) : (
-								<div style={{ height: '1.6rem' }}></div>
-							)}
-						<label className='form__label' htmlFor='email'>
+							<div style={{ height: '1.6rem' }}></div>
+						)}
+						<label className='form__changeName-label' htmlFor='email'>
 							email
 						</label>
 						<Field
 							style={{
-								borderBottom: `${touched.email
-									? errors.email
-										? '2px solid red'
-										: '2px solid green'
-									: null
-									}`,
+								borderBottom: `${
+									touched.email
+										? errors.email
+											? '2px solid #ff6854'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
 							type='email'
-							className='form__input'
+							className='form__changeName-input'
 							name='email'
 							value={values.email}
 						/>
 						{errors.email && touched.email ? (
 							<div>{errors.email}</div>
 						) : (
-								<div style={{ height: '1.6rem' }} />
-							)}
+							<div style={{ height: '1.6rem' }} />
+						)}
 
-						<label className='form__label' htmlFor='confirmPassword'>
-							confirm password
-						</label>
-						<div className='change-form__form-group'>
+						<div className='form__changeName-group'>
 							<img src={`uploads/users/${user.photo}`} alt='' />
 							<Field
 								style={{ display: 'none' }}
@@ -129,39 +131,27 @@ const ChangeNameAndEmailForm = ({ user }) => {
 							{errors.confirmPassword && touched.confirmPassword ? (
 								<div>{errors.confirmPassword}</div>
 							) : (
-									<div style={{ height: '1.6rem' }} />
-								)}
+								<div style={{ height: '1.6rem' }} />
+							)}
 
 							<label style={{ cursor: 'pointer' }} htmlFor='files'>
 								Choose new photo
 							</label>
 						</div>
 
-						<button onClick={() => setClicked(true)} style={{ position: 'relative', display: 'flex', alignItems: 'center' }} className='form__button' type='submit'>
-							submit
-							 <SpinnerWrapper clicked={clicked}>
-								<Spinner />
-							</SpinnerWrapper>
-						</button>
+						<ButtonWithSpinner
+							className='form__changeName-button'
+							title='submit'
+							clicked={clicked}
+						/>
+						{/* </button> */}
 
 						{error && <Alert message={error.data.message} />}
 					</Form>
 				)}
 			</Formik>
 		</div>
-
 	);
 };
-
-const SpinnerWrapper = styled.div`
-	/* display: ${state => state.clicked ? 'inline-block' : 'none'}; */
-	position: absolute;
-	left: 50%;
-	left: 40%; 
-	left: ${state => state.clicked && '15%'}; 
-	transition: all .2s ease-in-out; 
-	opacity: ${state => state.clicked ? '1' : '0'};
-`;
-
 
 export default ChangeNameAndEmailForm;

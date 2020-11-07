@@ -19,6 +19,7 @@
   position: relative;
   margin: 0 3rem 5rem 3rem;
   color: $dark-blue;
+  box-shadow: 0rem 1.5rem 3rem rgba(0, 0, 0, 0.1);
 
   // &:hover &__title::after {
   //   width: 7rem;
@@ -131,7 +132,9 @@
   }
 
   &__footer {
-    background-color: #e9e9e9;
+    // background-color: #e9e9e9;
+    background-color: #f2f2f2;
+    background-color: #ededed;
     height: 50%;
     text-align: center;
     transition: all 0.2s ease-in-out;

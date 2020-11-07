@@ -43,7 +43,7 @@ app.enable('trust proxy');
 
 app.use(cors());
 
-// app.options('*', cors());
+app.options('*', cors());
 
 // app.set('view engine', 'pug');
 // app.set('views', path.join(__dirname, 'views'));
@@ -56,7 +56,7 @@ app.use(helmet());
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+	app.use(morgan('dev'));
 }
 
 // Limit requests from same API
@@ -68,13 +68,14 @@ if (process.env.NODE_ENV === 'development') {
 // app.use('/api', limiter);
 
 app.post(
-  '/webhook-checkout',
-  bodyParser.raw({ type: 'application/json' }),
-  bookingController.webhookCheckout
+	'/webhook-checkout',
+	bodyParser.raw({ type: 'application/json' }),
+	bookingController.webhookCheckout
 ); // moramo da stavimo ovo jer ne sme da bude u json formatu
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
@@ -85,23 +86,29 @@ app.use(xss());
 
 // Prevent parameter pollution
 app.use(
-  hpp({
-    whitelist: [
-      'duration',
-      'ratingsQuantity',
-      'ratingsAverage',
-      'maxGroupSize',
-      'difficulty',
-      'price',
-    ],
-  })
+	hpp({
+		whitelist: [
+			'duration',
+			'ratingsQuantity',
+			'ratingsAverage',
+			'maxGroupSize',
+			'difficulty',
+			'price',
+		],
+	})
 );
 
 app.use(
-  hpp({
-    whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price',
-    ],
-  })
+	hpp({
+		whitelist: [
+			'duration',
+			'ratingsQuantity',
+			'ratingsAverage',
+			'maxGroupSize',
+			'difficulty',
+			'price',
+		],
+	})
 );
 
 // if (process.env.NODE_ENV === 'production') {
@@ -117,9 +124,9 @@ app.use(
 
 // Test middleware
 app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  // console.log(req.headers);
-  next();
+	req.requestTime = new Date().toISOString();
+	// console.log(req.headers);
+	next();
 });
 
 // 3) ROUTES
@@ -129,15 +136,15 @@ app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/booking', bookingRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  //set static folder
-  app.use(express.static('client/build'));
+	//set static folder
+	app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
 }
 app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+	next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 app.use(globalErrorHandler);

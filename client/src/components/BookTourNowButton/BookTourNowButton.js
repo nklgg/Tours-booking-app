@@ -25,7 +25,7 @@ const BookTourNowButton = ({ tour, title }) => {
 				</div>
 
 				{/* <button className='booktour__title-button'>book tour now!</button> */}
-				<Stripe tourId={tour.id} className='booktour__title-button' />
+				{!title ? <Stripe tourId={tour.id} className='booktour__title-button' /> : <button>{title}</button>}
 				{/* <StripeButton className='booktour__title-button' /> */}
 			</div>
 		</section>

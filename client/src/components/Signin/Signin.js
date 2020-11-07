@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import './Signin.scss';
 import Loader from '../../utils/Loader.js/Spinner';
 import { Formik, Form, Field } from 'formik';
-import Spinner from '../../utils/Loader.js/Spinner'
+import Spinner from '../../utils/Loader.js/Spinner';
 import Alert from '../../utils/ErrorAlert/ErrorAlert';
 // import SpinnerWrapper from '../../utils/SpinnerWrapper'
 import * as Yup from 'yup';
-
+import ButtonWithSpinner from '../../utils/ButtonWithSpinner/ButtonWithSpinner';
 
 const Signin = () => {
 	// const [email, setEmail] = useState('');
@@ -52,7 +52,7 @@ const Signin = () => {
 	});
 
 	return (
-		<div className="signin__form" style={{ height: '100vh' }}>
+		<div className='signin__wrapper'>
 			<Formik
 				initialValues={{
 					email: '',
@@ -67,67 +67,70 @@ const Signin = () => {
 					console.log(values);
 				}}>
 				{({ errors, touched }) => (
-					<Form className='form'>
-						<h1 className='form__title'>log into your account</h1>
-						<label className='form__label' htmlFor='email'>
+					<Form className='signin__form'>
+						<h1 className='signin__form-title'>log into your account</h1>
+						<label className='signin__form-label' htmlFor='email'>
 							email address
 						</label>
 						<Field
 							style={{
-								borderBottom: `${touched.email
-									? errors.email
-										? '2px solid red'
-										: '2px solid green'
-									: null
-									}`,
+								borderBottom: `${
+									touched.email
+										? errors.email
+											? '2px solid #ff6854'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='mail@example.com'
-							className='form__input'
+							className='signin__form-input'
 							name='email'
 						/>
 						{errors.email && touched.email ? (
 							<div>{errors.email}</div>
 						) : (
-								<div style={{ height: '1.6rem' }}></div>
-							)}
-						<label className='form__label' htmlFor='email'>
+							<div style={{ height: '1.6rem' }}></div>
+						)}
+						<label className='signin__form-label' htmlFor='email'>
 							password
 						</label>
 						<Field
 							style={{
-								borderBottom: `${touched.password
-									? errors.password
-										? '2px solid #ff4400'
-										: '2px solid #00eb07'
-									: null
-									}`,
+								borderBottom: `${
+									touched.password
+										? errors.password
+											? '2px solid #ff6854'
+											: '2px solid #35de9d'
+										: null
+								}`,
 							}}
 							placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'
 							type='password'
-							className='form__input'
+							className='signin__form-input'
 							name='password'
 						/>
 						{errors.password && touched.password ? (
 							<div>{errors.password}</div>
 						) : (
-								<div style={{ height: '1.6rem' }} />
-							)}
+							<div style={{ height: '1.6rem' }} />
+						)}
 
-						<button style={{ display: 'flex', alignItems: 'center', position: 'relative' }} className='form__button' type='submit'>
+						{/* <button style={{ display: 'flex', alignItems: 'center', position: 'relative' }} className='form__button' type='submit'>
 							submit <SpinnerWrapper clicked={auth.loading}>
 
 								<Spinner />
 							</SpinnerWrapper>
 
-						</button>
+						</button> */}
+						<ButtonWithSpinner title='submit' clicked={auth.loading} />
 						{/* <span>{auth.loading && <Loader />}</span> */}
 
 						{/* <p style={{textAlign: 'center', fontSize: '2rem', color: 'red'}}>{auth.loginError && auth.loginError.data.message}</p> */}
 						{auth.loginError ? (
 							<Alert message={auth.loginError.data.message} />
 						) : (
-								<div style={{ height: '3.6rem', marginTop: '2rem' }}></div>
-							)}
+							<div style={{ height: '3.6rem', marginTop: '2rem' }}></div>
+						)}
 					</Form>
 				)}
 			</Formik>
@@ -151,14 +154,12 @@ const Signin = () => {
 };
 
 const SpinnerWrapper = styled.div`
-	/* display: ${state => state.clicked ? 'inline-block' : 'none'}; */
+	/* display: ${(state) => (state.clicked ? 'inline-block' : 'none')}; */
 	position: absolute;
 	left: 40%;
-	left: ${state => state.clicked && '20%'};
-	transition: all .2s ease-in-out;
-	opacity: ${state => state.clicked ? '1' : '0'};
-
-
-`
+	left: ${(state) => state.clicked && '20%'};
+	transition: all 0.2s ease-in-out;
+	opacity: ${(state) => (state.clicked ? '1' : '0')};
+`;
 
 export default Signin;
