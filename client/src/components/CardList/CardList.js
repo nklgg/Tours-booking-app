@@ -5,7 +5,7 @@ const CardList = ({ data, slug }) => {
 	console.log(slug);
 
 	return (
-		<div style={{ height: '100%' }} className='card-container'>
+		<div style={{ minHeight: '100vh' }} className='card-container'>
 			{data.loading ? (
 				<>
 					<MyLoader />
