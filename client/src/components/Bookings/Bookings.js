@@ -35,7 +35,7 @@ const Bookings = () => {
 	};
 
 	// return !booking ? <h3>loading</h3> : <CardList slug={history} data={bookings} />
-	return !bookings.length > 0 ? (
+	return !bookings.tours.length > 0 ? (
 		<div style={{ height: '100vh' }}>
 			<h3 className='no-tour-title'>you didn't book any tour yet 😢</h3>
 		</div>
