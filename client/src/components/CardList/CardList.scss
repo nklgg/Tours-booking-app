@@ -1,0 +1,17 @@
+.card-container {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	padding: 0 0;
+	max-width: 120rem;
+	margin: 0 auto;
+	margin-top: 10rem;
+	min-height: 100vh;
+}
+
+@media all and (max-width: 768px) {
+	.card-container {
+		margin: 0;
+		padding-top: 10rem;
+	}
+}

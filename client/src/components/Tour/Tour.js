@@ -24,20 +24,20 @@ const Tour = () => {
 	let dispatch = useDispatch();
 	let auth = useSelector((state) => state.auth);
 	let [tour, setTour] = useState();
+	let [scroll, setScroll] = useState();
 
-	const [scrollPosition, setPosition] = useState(0);
 	useLayoutEffect(() => {
-		function updatePosition() {
-			setPosition(window.pageYOffset);
-		}
-		window.addEventListener('scroll', updatePosition);
-		updatePosition();
-		return () => window.removeEventListener('scroll', updatePosition);
+		window.addEventListener('scroll', handleScroll);
 	}, []);
 
 	useEffect(() => {
 		getTour();
 	}, []);
+
+	const handleScroll = (e) => {
+		console.log('scrolled man');
+		setScroll(window.pageYOffset);
+	};
 
 	const getTour = async () => {
 		const res = await axios.get(`/api/v1/tours/getTourBySlug/${slug}`);

@@ -1,11 +1,12 @@
 import React from 'react';
 import Card from '../Card/Card';
 import MyLoader from '../../utils/MyLoader/MyLoader';
+import './CardList.scss';
 const CardList = ({ data, slug }) => {
 	console.log(slug);
 
 	return (
-		<div style={{ minHeight: '100vh' }} className='card-container'>
+		<div className='card-container'>
 			{data.loading ? (
 				<>
 					<MyLoader />
