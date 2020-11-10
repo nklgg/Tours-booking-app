@@ -32,10 +32,10 @@
 
 	&__info {
 		position: absolute;
-		transform: translateX(-50%);
-		margin-top: 12rem;
+		transform: translate(-50%, -60%);
+		// margin-top: 12rem;
 		width: 35rem;
-		top: 0;
+		top: 50%;
 		left: 50%;
 		span {
 			margin: 0 0.5rem;
