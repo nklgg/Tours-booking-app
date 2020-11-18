@@ -24,7 +24,7 @@ const Review = ({ tourId }) => {
 
 		setLoading(true);
 		try {
-			const res = await axios.post(
+			await axios.post(
 				`/api/v1/tours/${tourId}/reviews`,
 				{ review, rating },
 				{ withCredentials: true }
@@ -61,9 +61,6 @@ const Review = ({ tourId }) => {
 				</label>
 				<StarRating setRating={setRating} />
 
-				{/* <button className='form__button' onClick={(e) => handleSubmit(e)}>
-					submit review
-				</button> */}
 				<ButtonWithSpinner clicked={loading} title='submit' />
 			</form>
 			{error && <ErrorAlert message={error.data.message} />}

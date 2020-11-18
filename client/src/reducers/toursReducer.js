@@ -8,16 +8,16 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case 'TOURS_REQUESTED':
+		case TOURS_REQUESTED:
 			return { ...state, loading: true, tours: [], error: false };
-		case 'TOURS':
+		case TOURS:
 			return {
 				...state,
 				loading: false,
 				tours: action.payload,
 				error: null,
 			};
-		case 'TOURS_FAIL':
+		case TOURS_FAIL:
 			return {
 				...state,
 				loading: false,

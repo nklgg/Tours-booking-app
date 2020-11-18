@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import styled from 'styled-components';
 import axios from 'axios';
 import Spinner from '../../utils/Loader.js/Spinner';
-import ButtonWithSpinner from '../../utils/ButtonWithSpinner/ButtonWithSpinner';
 
 import './Stripe.scss';
 

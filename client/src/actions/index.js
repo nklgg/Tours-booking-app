@@ -1,10 +1,24 @@
 import axios from 'axios';
-import { AUTH_REQUESTED } from './types';
+import {
+	AUTH,
+	AUTH_FAIL,
+	TOURS,
+	TOURS_FAIL,
+	BOOKINGS,
+	AUTH_REQUESTED,
+	AUTH_SIGNIN_FAIL,
+	AUTH_SIGNUP_FAIL,
+	BOOKINGS_FAIL,
+	BOOKINGS_REQUESTED,
+	TOURS_REQUESTED,
+	LOGOUT,
+	LOGOUT_FAIL,
+} from './types';
 
 export const signUp = (formData) => {
 	return async function (dispatch) {
 		dispatch({
-			type: 'AUTH_REQUESTED',
+			type: AUTH_REQUESTED,
 		});
 
 		try {
@@ -13,12 +27,12 @@ export const signUp = (formData) => {
 			});
 
 			dispatch({
-				type: 'AUTH',
+				type: AUTH,
 				payload: res.data.data.user,
 			});
 		} catch (err) {
 			dispatch({
-				type: 'AUTH_SIGNUP_FAIL',
+				type: AUTH_SIGNUP_FAIL,
 				payload: err.response,
 			});
 		}
@@ -28,7 +42,7 @@ export const signUp = (formData) => {
 export const signIn = (formData) => {
 	return async function (dispatch) {
 		dispatch({
-			type: 'AUTH_REQUESTED',
+			type: AUTH_REQUESTED,
 		});
 
 		try {
@@ -37,14 +51,12 @@ export const signIn = (formData) => {
 			});
 			console.log(res);
 			dispatch({
-				type: 'AUTH',
+				type: AUTH,
 				payload: res.data.data.user,
 			});
 		} catch (err) {
-			console.log('OVO JE LOGin', err);
-
 			dispatch({
-				type: 'AUTH_SIGNIN_FAIL',
+				type: AUTH_SIGNIN_FAIL,
 				payload: err.response,
 			});
 		}
@@ -54,7 +66,7 @@ export const signIn = (formData) => {
 export const getUser = () => {
 	return async function (dispatch) {
 		dispatch({
-			type: 'AUTH_REQUESTED',
+			type: AUTH_REQUESTED,
 		});
 		try {
 			const res = await axios.get(`/api/v1/users/me`, {
@@ -62,13 +74,13 @@ export const getUser = () => {
 			});
 			console.log(res);
 			dispatch({
-				type: 'AUTH',
+				type: AUTH,
 				payload: res.data.data.data,
 			});
 		} catch (err) {
 			console.log(err.response);
 			dispatch({
-				type: 'AUTH_FAIL',
+				type: AUTH_FAIL,
 				payload: err.response,
 			});
 		}
@@ -78,7 +90,7 @@ export const getUser = () => {
 export const patchUser = (formData) => {
 	return async function (dispatch) {
 		dispatch({
-			type: 'AUTH_REQUESTED',
+			type: AUTH_REQUESTED,
 		});
 		try {
 			const res = await axios.patch(`/api/v1/users/updateMe`, formData, {
@@ -86,13 +98,13 @@ export const patchUser = (formData) => {
 			});
 			console.log(res);
 			dispatch({
-				type: 'AUTH',
+				type: AUTH,
 				payload: res.data.data.user,
 			});
 		} catch (err) {
 			console.log(err.response);
 			dispatch({
-				type: 'AUTH_FAIL',
+				type: AUTH_FAIL,
 				payload: err.response,
 			});
 		}
@@ -102,25 +114,25 @@ export const patchUser = (formData) => {
 export const getTours = () => {
 	return async function (dispatch, getState) {
 		dispatch({
-			type: 'TOURS_REQUESTED',
+			type: TOURS_REQUESTED,
 		});
 		console.log(getState().tours);
 		if (!getState().tours.tours.length > 0) {
 			try {
 				const res = await axios.get('/api/v1/tours');
 				dispatch({
-					type: 'TOURS',
+					type: TOURS,
 					payload: res.data.data.data,
 				});
 			} catch (err) {
 				dispatch({
-					type: 'TOURS_FAIL',
+					type: TOURS_FAIL,
 					payload: err.response,
 				});
 			}
 		} else {
 			dispatch({
-				type: 'TOURS',
+				type: TOURS,
 				payload: getState().tours.tours,
 			});
 		}
@@ -134,11 +146,11 @@ export const logout = () => {
 				withCredentials: true,
 			});
 			dispatch({
-				type: 'LOGOUT',
+				type: LOGOUT,
 			});
 		} catch (err) {
 			dispatch({
-				type: 'LOGOUT_FAILED',
+				type: LOGOUT_FAIL,
 				payload: err.response,
 			});
 		}
@@ -148,7 +160,7 @@ export const logout = () => {
 export const getBookings = () => {
 	return async function (dispatch) {
 		dispatch({
-			type: 'BOOKINGS_REQUESTED',
+			type: BOOKINGS_REQUESTED,
 		});
 		try {
 			const res = await axios.get(`/api/v1/booking/my-tours`, {
@@ -156,13 +168,13 @@ export const getBookings = () => {
 			});
 			console.log(res);
 			dispatch({
-				type: 'BOOKINGS',
+				type: BOOKINGS,
 				payload: res.data.tours,
 			});
 		} catch (err) {
 			console.log(err.response);
 			dispatch({
-				type: 'BOOKINGS_FAIL',
+				type: BOOKINGS_FAIL,
 				payload: err.response,
 			});
 		}

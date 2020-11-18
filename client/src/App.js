@@ -12,32 +12,45 @@ import Me from './components/Me/Me';
 import ProtectedRoute from './utils/ProtectedRoute';
 import Bookings from './components/Bookings/Bookings';
 import Review from './components/Review/Review';
-import Hamburger from './components/Nav/Hamburger'
 function App() {
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
+	const auth = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(getUser());
-    console.log('first');
-  }, []);
-  return (
-    <div style={{ backgroundColor: '#f5f5f5', }} className="App">
-      <Nav />
-      {/* <Hamburger /> */}
-      <Switch>
-        <Route exact path="/" component={Home} />a
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/signin" component={Signin} />
-        <Route exact path="/tour/:slug" component={Tour} />
-
-        {auth.loading === false && <ProtectedRoute auth={auth} routeName="me" exact path="/me" component={Me} />}
-
-        {auth.loading === false && <ProtectedRoute auth={auth} exact path="/my-tours" component={Bookings} />};
-        <Route exact path="/review" component={Review} />
-      </Switch>
-    </div>
-  );
+	useEffect(() => {
+		dispatch(getUser());
+		console.log('first');
+	}, []);
+	return (
+		<div style={{ backgroundColor: '#f5f5f5' }} className='App'>
+			<Nav />
+			{/* <Hamburger /> */}
+			<Switch>
+				<Route exact path='/' component={Home} />a
+				<Route exact path='/signup' component={Signup} />
+				<Route exact path='/signin' component={Signin} />
+				<Route exact path='/tour/:slug' component={Tour} />
+				{auth.loading === false && (
+					<ProtectedRoute
+						auth={auth}
+						routeName='me'
+						exact
+						path='/me'
+						component={Me}
+					/>
+				)}
+				{auth.loading === false && (
+					<ProtectedRoute
+						auth={auth}
+						exact
+						path='/my-tours'
+						component={Bookings}
+					/>
+				)}
+				;
+				<Route exact path='/review' component={Review} />
+			</Switch>
+		</div>
+	);
 }
 
 export default App;

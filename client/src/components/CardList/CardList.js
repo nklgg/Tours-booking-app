@@ -21,7 +21,7 @@ const CardList = ({ data, slug }) => {
 				</>
 			) : (
 				data.tours.map((el) => {
-					return <Card data={el} />;
+					return <Card key={el._id} data={el} />;
 				})
 			)}
 			{/* {data.tours.map(el => {
