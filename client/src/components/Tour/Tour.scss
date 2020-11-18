@@ -35,7 +35,7 @@
 		transform: translate(-50%, -60%);
 		// margin-top: 12rem;
 		width: 35rem;
-		top: 50%;
+		top: 45%;
 		left: 50%;
 		span {
 			margin: 0 0.5rem;
@@ -191,5 +191,11 @@
 
 	.review {
 		// background-color: grey;
+		padding: 3rem 1rem;
+	}
+
+	.footer__section {
+		padding-bottom: 5rem;
+		padding: 5rem 1rem;
 	}
 }

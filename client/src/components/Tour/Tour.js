@@ -146,7 +146,9 @@ const Tour = () => {
 				<section className='reviews'>{<ReviewsCarousel tour={tour} />}</section>
 			)}
 			{/* {auth.authenticated ? renderButton() : <BookTourNowButton tour={tour} title="log in mane" />} */}
-			<Footer tour={tour} auth={auth} />
+			<footer className='footer__section'>
+				<Footer tour={tour} auth={auth} />
+			</footer>
 		</>
 	);
 };

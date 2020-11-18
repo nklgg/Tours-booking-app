@@ -35,7 +35,7 @@ const ReviewsCarousel = ({ tour }) => {
 			buttonsDisabled={true}
 			responsive={{
 				0: { items: 1 },
-				500: { items: 2 },
+				980: { items: 2 },
 				1400: { items: 3 },
 				1800: { items: 3 },
 			}}

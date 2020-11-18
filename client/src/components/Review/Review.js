@@ -22,7 +22,6 @@ const Review = ({ tourId }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-
 		setLoading(true);
 		try {
 			const res = await axios.post(
@@ -32,12 +31,11 @@ const Review = ({ tourId }) => {
 			);
 
 			history.go(0);
-			setLoading(false)
+			setLoading(false);
 		} catch (err) {
 			setError(err.response);
 			console.log(err.response);
-			setLoading(false)
-
+			setLoading(false);
 		}
 	};
 
@@ -66,7 +64,7 @@ const Review = ({ tourId }) => {
 				{/* <button className='form__button' onClick={(e) => handleSubmit(e)}>
 					submit review
 				</button> */}
-				<ButtonWithSpinner clicked={loading} title="title" />
+				<ButtonWithSpinner clicked={loading} title='submit' />
 			</form>
 			{error && <ErrorAlert message={error.data.message} />}
 		</div>

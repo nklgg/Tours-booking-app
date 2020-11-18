@@ -72,7 +72,9 @@
 	.reviews {
 		padding: 20rem 2rem;
 	}
+}
 
+@media screen and (max-width: 450px) {
 	.reviews__box {
 		width: 100%;
 	}
