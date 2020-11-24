@@ -8,7 +8,7 @@ Full stack app written in react and express using mongodb
 * Product and reviews rating
 * Sign in and sign up
 * Name, email and password change
-* Book reviews via Stripe
+* Book tours via Stripe
 * Leave review if you bought the tour
 * Be able to view all booked tours
 * Responsive
