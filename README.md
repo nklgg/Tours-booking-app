@@ -31,9 +31,9 @@ HOST=smtp.mailtrap.io
 EMAIL_PORT=2525
 EMAIL_FROM = email which users will see
 SENDGRID_USERNAME=apikey
-SENDGRID_PASSWORD= yendgrid password
-STRIPE_SECRET_KEY= your Stripe secret key
-STRIPE_WEBHOOK_SECRET= your Stribe webhook secret
+SENDGRID_PASSWORD= sendgrid password
+STRIPE_SECRET_KEY= your stripe secret key
+STRIPE_WEBHOOK_SECRET= your stripe webhook secret
 ```
 
 ## Install Dependencies (frontend & backend)
